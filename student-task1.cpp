@@ -84,7 +84,7 @@ class Student : public Person{
 
 void Student::setgrade(double g)
 {
-	grade =g;
+	grade = g;
 }
 
 double Student::getgrade()
@@ -121,8 +121,45 @@ int main()
 {  
 
 	// Write your code for Task 1
-		
+	int n;
+	int grade;
+	char name[200];
+
+	list<Student> student_list;
+	list<Student>::iterator p;
+	list<Student>::reverse_iterator r;
+
+	cout << "Enter number of students: ";
+	cin >> n;
+
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Enter student name: ";
+		cin >> name;
+		cout << "Enter student grade: ";
+		cin >> grade;
+
+		Student x(name, grade); // create the student object
+
+		p = student_list.begin();
+
+		while(p != student_list.end() && p->getgrade() < grade) p++;
+		student_list.insert(p, x);
+	}
+
+	// print in ascending order
+	cout << "\nPrint in ascending order:" << endl;
+	for (p = student_list.begin(); p != student_list.end(); p++)
+	{
+		cout << *p << endl;
+	}
+
+	// print in descending order
+	cout << "\nPrint in descending order:" << endl;
+	for (r = student_list.rbegin(); r != student_list.rend(); r++)
+	{
+		cout << *r << endl;
+	}
+
+	return 0;	
 }
-
-
-
